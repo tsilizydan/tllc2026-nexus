@@ -11,7 +11,7 @@ return [
     // General
     // ---------------------------------------------------------------
     'name'     => 'TSILIZY Nexus',
-    'url'      => '',   // Set to your production URL, e.g. https://nexus.tsilizy.com
+    'url'      => 'https://nexus.tsilizy.com',   // Set to your production URL, e.g. https://nexus.tsilizy.com
     'locale'   => 'fr',
     'timezone' => 'Africa/Douala',
     'debug'    => false,   // NEVER true in production
@@ -59,3 +59,4 @@ return [
         'ads'           => true,
     ],
 ];
+
