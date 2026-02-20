@@ -10,9 +10,9 @@ return [
     'driver'    => 'mysql',
     'host'      => 'localhost',
     'port'      => 3306,
-    'database'  => 'tsilizy_nexus',
-    'username'  => 'root',
-    'password'  => '',
+    'database'  => 'tsilscpx_tsilizy_nexus',
+    'username'  => 'tsilscpx_chibi_admin',
+    'password'  => '9@UPN~I@O]Dw',
     'charset'   => 'utf8mb4',
     'collation' => 'utf8mb4_unicode_ci',
     'options'   => [
@@ -22,3 +22,4 @@ return [
         PDO::ATTR_PERSISTENT         => false,
     ],
 ];
+
