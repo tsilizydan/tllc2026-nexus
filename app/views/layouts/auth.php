@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($pageTitle ?? 'Connexion') ?> — <?= e($appName ?? 'TSILIZY Nexus') ?></title>
     <meta name="description" content="TSILIZY Nexus — Connexion à l'espace de travail">
+    <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#0F172A">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">

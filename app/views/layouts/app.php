@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($pageTitle ?? 'Dashboard') ?> — <?= e($appName) ?></title>
     <meta name="description" content="TSILIZY Nexus — Espace de travail">
+    <meta name="robots" content="noindex, nofollow">
     <link rel="manifest" href="<?= url('/public/manifest.json') ?>">
     <meta name="theme-color" content="#0F172A">
     <link rel="preconnect" href="https://fonts.googleapis.com">

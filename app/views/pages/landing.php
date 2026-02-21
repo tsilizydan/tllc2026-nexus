@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= e($appName) ?> — <?= e($pageTitle) ?></title>
-    <meta name="description" content="TSILIZY Nexus — La plateforme de productivité tout-en-un pour votre entreprise. Gérez tâches, projets, contacts et plus.">
+<?= SEO::render() ?>
     <meta name="theme-color" content="#0F172A">
     <link rel="manifest" href="<?= url('/public/manifest.json') ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,6 +66,7 @@
         .pricing-popular::before { content: 'Populaire'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #6C3CE1, #22D3EE); padding: 4px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: white; }
     </style>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<?= SEO::renderStructuredData() ?>
 </head>
 <body class="dark">
 

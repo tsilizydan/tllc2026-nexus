@@ -24,8 +24,9 @@ class AuthMiddleware
 
         $_SESSION['flash_error'] = 'Veuillez vous connecter pour accéder à cette page.';
 
-        $loginUrl = Router::url('/login');
-        header("Location: {$loginUrl}");
+        // Redirect to landing page (NOT /login — that redirects back to /)
+        $homeUrl = Router::url('/');
+        header("Location: {$homeUrl}");
         exit;
         return false;
     }

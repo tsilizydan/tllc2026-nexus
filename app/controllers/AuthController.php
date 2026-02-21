@@ -137,7 +137,7 @@ class AuthController extends Controller
     {
         Auth::logout();
         $this->flash('success', 'Vous avez été déconnecté avec succès.');
-        $this->redirect('/login');
+        $this->redirect('/');
     }
 
     /**
