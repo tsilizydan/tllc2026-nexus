@@ -1,0 +1,44 @@
+/**
+ * TSILIZY Nexus — Custom Application Styles
+ *
+ * Most styles are in the layout (app.php) via Tailwind CDN + inline CSS.
+ * This file is for overrides, print styles, and custom page-specific styles.
+ */
+
+/* Print styles */
+@media print {
+    .sidebar, .topbar, .notif-dot, .dropdown-menu { display: none !important; }
+    body { background: white; color: black; }
+    .card { border: 1px solid #ddd; box-shadow: none; }
+    main { padding: 0 !important; }
+}
+
+/* Loading spinner */
+.spinner {
+    width: 32px; height: 32px;
+    border: 3px solid rgba(108,60,225,0.2);
+    border-top-color: #6C3CE1;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Skeleton loading */
+.skeleton {
+    background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 0.5rem;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Kanban board */
+.kanban-column { min-height: 200px; }
+.kanban-card { cursor: grab; }
+.kanban-card:active { cursor: grabbing; }
+.kanban-card.dragging { opacity: 0.5; }
+
+/* Rich text editor overrides */
+.ql-editor { min-height: 200px; color: #e2e8f0; }
+.ql-toolbar { border-color: rgba(255,255,255,0.1) !important; }
+.ql-container { border-color: rgba(255,255,255,0.1) !important; }
