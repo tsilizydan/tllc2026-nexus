@@ -14,7 +14,7 @@ return [
     'url'      => 'https://nexus.tsilizy.com',   // Set to your production URL, e.g. https://nexus.tsilizy.com
     'locale'   => 'fr',
     'timezone' => 'Africa/Douala',
-    'debug'    => false,   // NEVER true in production
+    'debug'    => true,   // NEVER true in production
 
     // ---------------------------------------------------------------
     // Security
@@ -59,3 +59,4 @@ return [
         'ads'           => true,
     ],
 ];
+
