@@ -87,12 +87,6 @@
 </head>
 <body>
 
-<?php
-// Collect flash messages
-$flashSuccess = $_SESSION['flash_success'] ?? null; unset($_SESSION['flash_success']);
-$flashError   = $_SESSION['flash_error'] ?? null;   unset($_SESSION['flash_error']);
-$flashInfo    = $_SESSION['flash_info'] ?? null;     unset($_SESSION['flash_info']);
-?>
 <?php if ($flashSuccess || $flashError || $flashInfo): ?>
 <div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 6000)"
      class="fixed top-20 left-1/2 -translate-x-1/2 z-[100] w-full max-w-lg px-4">
@@ -143,8 +137,8 @@ $flashInfo    = $_SESSION['flash_info'] ?? null;     unset($_SESSION['flash_info
                 <div class="relative" x-data="{ langOpen: false }" @click.outside="langOpen = false">
                     <button @click="langOpen = !langOpen" class="w-9 h-9 rounded-xl bg-white/10 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center text-muted hover:text-heading transition-all text-xs font-bold uppercase" x-text="locale"></button>
                     <div x-show="langOpen" x-transition class="absolute right-0 mt-2 w-32 p-1 glass rounded-xl shadow-lg">
-                        <a href="<?= url('/lang/fr') ?>" class="flex items-center gap-2 px-3 py-2 text-sm rounded-lg hover:bg-primary-500/10 text-muted hover:text-heading">🇫🇷 Français</a>
-                        <a href="<?= url('/lang/en') ?>" class="flex items-center gap-2 px-3 py-2 text-sm rounded-lg hover:bg-primary-500/10 text-muted hover:text-heading">🇬🇧 English</a>
+                        <a href="<?= url('/set-language/fr') ?>" class="flex items-center gap-2 px-3 py-2 text-sm rounded-lg hover:bg-primary-500/10 text-muted hover:text-heading">🇫🇷 Français</a>
+                        <a href="<?= url('/set-language/en') ?>" class="flex items-center gap-2 px-3 py-2 text-sm rounded-lg hover:bg-primary-500/10 text-muted hover:text-heading">🇬🇧 English</a>
                     </div>
                 </div>
                 <!-- Dark mode toggle -->
@@ -168,8 +162,8 @@ $flashInfo    = $_SESSION['flash_info'] ?? null;     unset($_SESSION['flash_info
             <a href="#contact" @click="mobileMenu=false" class="block py-2 text-muted hover:text-heading" x-text="t.contact"></a>
             <div class="pt-4 flex flex-col gap-2">
                 <div class="flex gap-2">
-                    <a href="<?= url('/lang/fr') ?>" class="flex-1 text-center py-2 rounded-lg text-sm btn-outline">🇫🇷 FR</a>
-                    <a href="<?= url('/lang/en') ?>" class="flex-1 text-center py-2 rounded-lg text-sm btn-outline">🇬🇧 EN</a>
+                    <a href="<?= url('/set-language/fr') ?>" class="flex-1 text-center py-2 rounded-lg text-sm btn-outline">🇫🇷 FR</a>
+                    <a href="<?= url('/set-language/en') ?>" class="flex-1 text-center py-2 rounded-lg text-sm btn-outline">🇬🇧 EN</a>
                 </div>
                 <a href="<?= url('/login') ?>" class="btn-outline px-5 py-2.5 rounded-xl text-sm font-medium text-center" x-text="t.signIn"></a>
                 <a href="<?= url('/register') ?>" class="btn-primary px-5 py-2.5 rounded-xl text-sm font-semibold text-center" x-text="t.getStarted"></a>
