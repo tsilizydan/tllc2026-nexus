@@ -87,6 +87,35 @@
 </head>
 <body>
 
+<?php
+// Collect flash messages
+$flashSuccess = $_SESSION['flash_success'] ?? null; unset($_SESSION['flash_success']);
+$flashError   = $_SESSION['flash_error'] ?? null;   unset($_SESSION['flash_error']);
+$flashInfo    = $_SESSION['flash_info'] ?? null;     unset($_SESSION['flash_info']);
+?>
+<?php if ($flashSuccess || $flashError || $flashInfo): ?>
+<div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 6000)"
+     class="fixed top-20 left-1/2 -translate-x-1/2 z-[100] w-full max-w-lg px-4">
+    <?php if ($flashSuccess): ?>
+    <div class="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 text-sm text-center backdrop-blur-xl shadow-lg flex items-center justify-between gap-3">
+        <span><i class="fas fa-check-circle mr-2"></i><?= e($flashSuccess) ?></span>
+        <button @click="show = false" class="text-emerald-400/60 hover:text-emerald-400"><i class="fas fa-times"></i></button>
+    </div>
+    <?php elseif ($flashError): ?>
+    <div class="p-4 rounded-xl bg-red-500/15 border border-red-500/25 text-red-400 text-sm text-center backdrop-blur-xl shadow-lg flex items-center justify-between gap-3">
+        <span><i class="fas fa-exclamation-circle mr-2"></i><?= e($flashError) ?></span>
+        <button @click="show = false" class="text-red-400/60 hover:text-red-400"><i class="fas fa-times"></i></button>
+    </div>
+    <?php elseif ($flashInfo): ?>
+    <div class="p-4 rounded-xl bg-blue-500/15 border border-blue-500/25 text-blue-400 text-sm text-center backdrop-blur-xl shadow-lg flex items-center justify-between gap-3">
+        <span><i class="fas fa-info-circle mr-2"></i><?= e($flashInfo) ?></span>
+        <button @click="show = false" class="text-blue-400/60 hover:text-blue-400"><i class="fas fa-times"></i></button>
+    </div>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
+
+
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- NAVIGATION -->
 <!-- ═══════════════════════════════════════════════════ -->
@@ -334,12 +363,7 @@
             <p class="text-muted max-w-xl mx-auto" x-text="t.contactDesc"></p>
         </div>
 
-        <?php if (!empty($_SESSION['flash_success'])): ?>
-        <div class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm text-center"><?= e($_SESSION['flash_success']); unset($_SESSION['flash_success']); ?></div>
-        <?php endif; ?>
-        <?php if (!empty($_SESSION['flash_error'])): ?>
-        <div class="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center"><?= e($_SESSION['flash_error']); unset($_SESSION['flash_error']); ?></div>
-        <?php endif; ?>
+
 
         <form method="POST" action="<?= url('/contact') ?>" class="glass rounded-2xl p-8 fade-up space-y-5">
             <div class="grid sm:grid-cols-2 gap-5">
