@@ -13,7 +13,7 @@ Router::get('/', 'PageController@home');
 Router::get('/terms', 'PageController@terms');
 Router::get('/privacy', 'PageController@privacy');
 Router::get('/sitemap.xml', 'SitemapController@index');
-Router::get('/lang/{locale}', 'LanguageController@changeLocale');
+Router::get('/set-language/{locale}', 'LanguageController@changeLocale');
 Router::post('/contact', 'ContactFormController@submit');
 Router::post('/newsletter/subscribe', 'NewsletterController@subscribe');
 Router::get('/login', 'AuthController@loginForm');
