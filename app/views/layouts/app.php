@@ -284,10 +284,10 @@
                             <?= get_locale() ?>
                         </button>
                         <div x-show="langOpen" x-transition class="dropdown-menu absolute right-0 mt-2 w-32 p-1">
-                            <a href="<?= url('/lang/fr') ?>" class="flex items-center gap-2 px-3 py-2 text-sm rounded-lg <?= get_locale()==='fr' ? 'text-primary-300 bg-primary-500/10' : 'text-slate-400 hover:text-white hover:bg-white/5' ?>">
+                            <a href="<?= url('/set-language/fr') ?>" class="flex items-center gap-2 px-3 py-2 text-sm rounded-lg <?= get_locale()==='fr' ? 'text-primary-300 bg-primary-500/10' : 'text-slate-400 hover:text-white hover:bg-white/5' ?>">
                                 🇫🇷 Français
                             </a>
-                            <a href="<?= url('/lang/en') ?>" class="flex items-center gap-2 px-3 py-2 text-sm rounded-lg <?= get_locale()==='en' ? 'text-primary-300 bg-primary-500/10' : 'text-slate-400 hover:text-white hover:bg-white/5' ?>">
+                            <a href="<?= url('/set-language/en') ?>" class="flex items-center gap-2 px-3 py-2 text-sm rounded-lg <?= get_locale()==='en' ? 'text-primary-300 bg-primary-500/10' : 'text-slate-400 hover:text-white hover:bg-white/5' ?>">
                                 🇬🇧 English
                             </a>
                         </div>
