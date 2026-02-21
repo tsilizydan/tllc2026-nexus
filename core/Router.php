@@ -68,7 +68,9 @@ class Router
         if ($fullUri === '') $fullUri = '/';
 
         // Convert {param} to regex named groups
-        $pattern = preg_replace('#\{([a-zA-Z_]+)\}#', '(?P<$1>[^/]+)', $fullUri);
+        // Escape dots in URI (e.g., sitemap.xml) before converting params
+        $escaped = str_replace('.', '\.', $fullUri);
+        $pattern = preg_replace('#\\{([a-zA-Z_]+)\\}#', '(?P<$1>[^/]+)', $escaped);
         $pattern = '#^' . $pattern . '$#';
 
         self::$routes[] = [
@@ -88,6 +90,11 @@ class Router
     {
         $method = $_SERVER['REQUEST_METHOD'];
         $uri    = self::getUri();
+
+        // Debug: log what the router sees (remove in production if too noisy)
+        if (config('app.debug', false)) {
+            error_log("[ROUTER] {$method} {$uri} | SCRIPT_NAME=" . ($_SERVER['SCRIPT_NAME'] ?? 'N/A') . " | REQUEST_URI=" . ($_SERVER['REQUEST_URI'] ?? 'N/A') . " | BasePath=" . self::getBasePath());
+        }
 
         foreach (self::$routes as $route) {
             if ($route['method'] !== $method) continue;
@@ -128,6 +135,7 @@ class Router
         }
 
         // No route matched → 404
+        error_log("[ROUTER] 404 — No route matched: {$method} {$uri}");
         self::abort(404);
     }
 
@@ -146,14 +154,20 @@ class Router
 
     /**
      * Get base path (e.g. /subfolder if app is in subfolder)
+     * For Namecheap: when app is at document root, this MUST return ''
      */
     public static function getBasePath(): string
     {
         if (self::$basePath === '') {
             $scriptName = $_SERVER['SCRIPT_NAME'] ?? '/index.php';
-            self::$basePath = rtrim(dirname($scriptName), '/\\');
-            if (self::$basePath === '.' || self::$basePath === '\\') {
+            $dir = rtrim(dirname($scriptName), '/\\');
+
+            // On Namecheap, SCRIPT_NAME is typically /index.php
+            // dirname('/index.php') = '/' which should be treated as empty
+            if ($dir === '/' || $dir === '.' || $dir === '\\' || $dir === '') {
                 self::$basePath = '';
+            } else {
+                self::$basePath = $dir;
             }
         }
         return self::$basePath;
@@ -165,6 +179,7 @@ class Router
     private static function getUri(): string
     {
         $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+        $uri = rawurldecode($uri);  // Decode %20, etc.
         $base = self::getBasePath();
 
         if ($base !== '' && str_starts_with($uri, $base)) {
@@ -172,7 +187,8 @@ class Router
         }
 
         $uri = '/' . trim($uri, '/');
-        return $uri === '' ? '/' : $uri;
+        if ($uri === '') $uri = '/';
+        return $uri;
     }
 
     /**

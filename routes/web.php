@@ -12,6 +12,7 @@
 Router::get('/', 'PageController@home');
 Router::get('/terms', 'PageController@terms');
 Router::get('/privacy', 'PageController@privacy');
+Router::get('/sitemap.xml', 'SitemapController@index');
 Router::get('/login', 'AuthController@loginForm');
 Router::post('/login', 'AuthController@login');
 Router::get('/register', 'AuthController@registerForm');
